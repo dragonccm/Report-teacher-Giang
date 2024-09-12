@@ -1,0 +1,238 @@
+% this package is designed by: thanhhungqb@gmail.com
+% more infor mation and update: 
+%   https://github.com/thanhhungqb/thesis-template
+%
+% this package also use code from: 
+%	http://tex.stackexchange.com/questions/51483/how-to-write-abstract-and-acknowledgement-in-book-format
+% thank for Fredrik M. Kirkemo to gave a useful code
+
+\ProvidesPackage{bkthesis}
+
+\RequirePackage{graphicx}
+\RequirePackage{vietnam}
+\RequirePackage{geometry}
+
+
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{indentfirst}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{fancyvrb}
+% \usepackage{geometry}
+\def\thesislayout{	% A4: 210 × 297
+	\geometry{
+		a4paper,
+		total={160mm,247mm},  % fix over page
+		left=30mm,
+		top=20mm,
+            bottom=20mm,
+            right=20mm
+	}
+}
+
+\newcommand{\@sdeptname}{KHOA CÔNG NGHỆ THÔNG TIN}
+\newcommand{\csdeptname}[1]{\renewcommand{\@sdeptname}{#1}}
+
+\newcommand{\@tname}{GIT: nghiên cứu công cụ quản lý phiên bản phân tán, cài đặt, cấu hình 
+và chạy thử nghiệm. Đánh giá với một phần mềm khác cùng chức năng}
+\newcommand{\ctname}[1]{\renewcommand{\@tname}{#1}}
+
+\newcommand{\@stuname}{SVTH 1: Nguyễn Văn An (5...)\\SVTH 2: Phạm Bình Minh (...)}
+\newcommand{\cstuname}[1]{\renewcommand{\@stuname}{#1}}
+
+\newcommand{\@sCouncil}{Khoa học máy tính 1}
+\newcommand{\csCouncil}[1]{\renewcommand{\@sCouncil}{#1}}
+
+\newcommand{\@sReviewer}{TS. A}
+\newcommand{\csReviewer}[1]{\renewcommand{\@sReviewer}{#1}}
+	
+\newcommand{\@sSupervise}{TS. Nguyễn Văn A}
+\newcommand{\csSupervise}[1]{\renewcommand{\@sSupervise}{#1}}
+
+\newcommand{\@ttime}{\today}
+\newcommand{\cttime}[1]{\renewcommand{\@ttime}{#1}}
+
+\newcommand{\@rname}{\textbf{BÀI BÁO CÁO}} % report name, luận văn, thực tập...
+\newcommand{\crname}[1]{\renewcommand{\@rname}{#1}}
+
+\newsavebox\thesmashminipage
+\newenvironment{smashminipage}
+  {\begin{lrbox}{\thesmashminipage}\begin{minipage}[t]{\textwidth}}
+  {\end{minipage}\end{lrbox}\smash{\usebox{\thesmashminipage}}\clearpage}
+  
+\def\coverpage{
+
+    \pagestyle{empty}
+
+    \begin{smashminipage} %[b][25.5cm][t]{15cm}
+    \begin{tikzpicture}[remember picture, overlay]
+    \draw [line width=1pt]
+        ($ (current page.north west) + (3.0cm,-2.0cm) $)
+        rectangle
+        ($ (current page.south east) + (-1.5cm,1.5cm) $);
+    \draw [line width=3pt]
+        ($ (current page.north west) + (3.15cm,-2.15cm) $)
+        rectangle
+        ($ (current page.south east) + (-1.65cm,1.65cm) $); 
+    \end{tikzpicture}
+
+
+    \begin{center}
+    \begin{large}
+    TRƯỜNG ĐẠI HỌC KỸ THUẬT – CÔNG NGHỆ CẦN THƠ\\
+    \@sdeptname
+    \end{large} \\
+    \textbf{--------------------  *  ---------------------}\\[2cm]
+    \includegraphics[scale=0.4]{img/logoCTUT.png}\\[1.5cm]
+        {\fontsize{15}{1}\selectfont \@rname }\\[2cm]
+        {\fontsize{20}{1}\selectfont \textbf{\parbox[c][3cm]{14cm}{\centering \@title}} }\\[3.2cm]
+    \end{center}
+        
+    {\fontsize{15}{1}\selectfont}
+    \hspace{2cm}
+        \begin{tabular}{@{}cc@{}}
+            \begin{minipage}[t]{0.35\textwidth}
+                \raggedright
+                \textbf{Giảng viên hướng dẫn:} \\
+                Ths. Nguyễn Xuân Hà Giang
+            \end{minipage} &
+            \begin{minipage}[t]{0.5\textwidth}
+                \raggedright
+                \textbf{Sinh viên thực hiện:}\\
+                Nguyễn Bình Minh - 2101381\\ 
+                Nguyễn Trần Hoàng Long - 2100498\\
+                Nguyễn Hưng Thịnh - 2101518\\
+                Nguyễn Ngọc Long - 2100962
+            \end{minipage}
+        \end{tabular}
+
+    \vspace{3.5cm}
+    \begin{center}
+     {\fontsize{14}{1}\selectfont TP. CẦN THƠ, \@ttime }\\
+        
+    \end{center}
+    
+    \end{smashminipage}
+}
+\makeatletter
+\preto{\@verbatim}{\topsep=0pt \partopsep=0pt}
+\appto{\endverbatim}{\vspace{-10pt}}
+
+\makeatother
+
+
+
+
+
+\makeatletter
+\newenvironment{abstract}{
+	\titlepage 
+        % \null\vfil
+	\begin{center}
+	  {\Large\bfseries MỞ ĐẦU\vspace{10pt}\vspace{\z@}}
+	\end{center}
+	\quotation
+  }{}
+\makeatother
+
+
+\makeatletter
+\newenvironment{acknowledgments}{
+	\titlepage 
+        % \null\vfil
+	\begin{center}
+ 	  {\Large\bfseries LỜI CẢM ƠN\vspace{10pt}\vspace{\z@}}
+	\end{center}
+	\quotation
+  }{}
+\makeatother
+
+% Declaration
+\makeatletter
+\newenvironment{declaration}{
+	\begin{center}
+  	{\Large\bfseries LỜI CAM ĐOAN\vspace{10pt}\vspace{\z@}}
+	\end{center}
+	\quotation
+  }{}
+\makeatother	  
+
+\makeatletter
+\newenvironment{refs}{
+	\begin{center}
+  	{\Large\bfseries TÀI LIỆU THAM KHẢO\vspace{10pt}\vspace{\z@}}
+	\end{center}
+	\quotation
+  }{}
+\makeatother	
+\def\phancongcongviec{
+\begin{center}
+{\Large\bfseries BẢNG PHÂN CÔNG NHIỆM VỤ\vspace{10pt}}
+\end{center}
+\begin{center}
+\begin{longtable}{ | m{5cm} | m{10cm}| }
+  \hline
+  \multicolumn{2}{|c|}{\textbf{Bảng phân công nhiệm vụ}} \\ 
+  \hline
+ \multicolumn{1}{|c|}{Họ và tên} & \multicolumn{1}{|c|}{Nhiệm vụ} \\ 
+  \hline
+  Nguyễn Bình Minh & 
+    \begin{itemize}
+        \item Đăng ký.
+        \item Đăng nhập.
+        \item Lấy lại mật khẩu.
+        \item Quản lý thông tin webside.
+        \item Quản lý người dùng.
+        \item Quản lý báo cáo.
+        \item Quản lý bình luận.
+        \item Hệ thống thông báo
+        \item Tìm kiếm phim.
+    \end{itemize} \\ 
+  \hline
+  Nguyễn Trần Hoàng Long & 
+    \begin{itemize}
+        \item Quản lý phim.
+        \item Quản lý thông tin phim.
+        \item Xem phim:
+        \begin{itemize}
+            \item Chọn tập phim.
+            \item Chọn máy chủ xem phim.
+            \item Thay đổi phân giải phim.
+            \item Xem thông báo và lịch chiếu.
+        \end{itemize}
+        \item Thiết lập máy chủ email.
+        \item Tìm kiếm phim nâng cao.
+        \item Tạo bộ công cụ tải video lên máy chủ TikTok.
+    \end{itemize} \\
+    \hline
+    Nguyễn Thị Hồng Nguyên & 
+    \begin{itemize}
+        \item Đánh giá tập phim.
+        \item Bình luận tập phim.
+        \item Thích phim.
+        \item Hệ thống gửi báo cáo.
+        \item Khảo sát sở thích xem phim.
+        \item Hiển thị danh sách phim gợi ý ở trang xem phim.
+        \item Hiển thị thông tin phim ở trang xem phim.
+    \end{itemize} \\
+    \hline
+    Huỳnh Thị Hồng Phấn & 
+    \begin{itemize}
+        \item Thay đổi thông tin người dùng.
+        \item Đổi mật khẩu.
+        \item Đổi ảnh đại diện.
+        \item Hiển thị danh sách phim gợi ý ở trang chủ.
+        \item Chia sẻ phim.
+        \item Hiển thị danh sách phim gợi ý ở trang xem thông tin phim.
+        \item Hiển thị thông tin phim ở trang xem thông tin phim.
+    \end{itemize} \\ 
+    \hline
+\end{longtable}
+\end{center}
+}
+
+
+% \renewcommand\lstlistingname{Algorithm}
+% \renewcommand\lstlistlistingname{Algorithms}

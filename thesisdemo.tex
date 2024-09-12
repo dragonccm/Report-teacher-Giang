@@ -1,0 +1,356 @@
+% this package is designed by: thanhhungqb@gmail.com
+% more information and update: 
+%   https://github.com/thanhhungqb/thesis-template
+\documentclass[a4paper,oneside]{extbook}
+\usepackage{tocloft}
+
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{ragged2e}
+\usepackage[fontsize=13pt]{scrextend}
+\usepackage{enumitem}
+\usepackage{lipsum}
+\usepackage{longtable}
+\usepackage{etoolbox}
+\usepackage{lipsum}  % Để tạo văn bản mẫu
+
+\usepackage{tabularx}
+
+% Dãn dòng 1.2
+\setstretch{1.2}
+
+% Văn bản canh đều
+\justifying
+
+% Thiết lập đoạn
+\usepackage{parskip}
+\setlength{\parskip}{6pt}
+
+
+%\usepackage{babel}
+\usepackage[utf8]{vietnam}
+%\usepackage{times}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% custom colors
+\definecolor{halfgray}{gray}{0.55}
+\definecolor{frame}{RGB}{207, 207, 207}
+\definecolor{background}{RGB}{247, 247, 247}
+\definecolor{TSX-keyword}{RGB}{42,0.0,255}
+\definecolor{TSX-string}{RGB}{127,0,85}
+\colorlet{TSX-number}{magenta!60!black}
+\definecolor{TSX-comment}{rgb}{0,0.5,0}
+\colorlet{TSX-punct}{red!60!black}
+\definecolor{TSX-obj-brace}{RGB}{20,105,176}
+\definecolor{TSX-lst-brace}{RGB}{20,105,176}
+\definecolor{TSX-jsx-tag}{RGB}{0,0,255}
+
+% TypeScript JSX language definition
+\lstdefinelanguage{TSX}{
+    % common to all of TypeScript
+    keywords=[1]{typeof, new, true, false, catch, function, return, null, const, let, var, if, catch, switch, in, while, do, else, case, break, class, export, boolean, throw, implements, import, this, default, async, await, extends, static, get, set, interface, type, public, private, protected, enum, namespace, declare, module},
+    % react hooks
+    keywords=[2]{useEffect, useState, useRef, useCallback, useMemo, useLayoutEffect, useReducer, useContext, useImperativeHandle, useDebugValue},
+    % JSX tags
+    keywords=[3]{div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, li, ol, table, tr, td, th, form, input, button, select, option, textarea, header, footer, nav, section, article, aside, main, figure, figcaption, time, mark, code, pre, blockquote, q, cite, em, strong, small, sub, sup, bdi, bdo, br, wbr, abbr, data, meter, progress, output, details, summary, command, datalist, keygen, menuitem},
+    % comments and strings
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    sensitive=true,     % should be case-sensitive
+    morestring=[b]',
+    morestring=[b]"
+}
+
+% style definition
+\lstdefinestyle{TSX}{
+    % language grammar
+    language=TSX,
+    % formatting and styling
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    rulecolor=\color{frame},
+    frame=single,
+    frameround={t}{t}{t}{t},
+    framexleftmargin=6mm,
+    numbers=left,
+    xleftmargin=20pt,
+    numberstyle=\tiny\color{halfgray},
+    backgroundcolor=\color{background},
+    basicstyle=\scriptsize\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                                     
+    numbers=left,                    
+    numbersep=8pt,                              
+    showtabs=false,                  
+    tabsize=2,
+    stepnumber=1,
+    escapeinside={(*!}{!*)},
+    % colors and other styles    
+    commentstyle=\color{TSX-comment},
+    keywordstyle=\color{TSX-keyword},
+    keywordstyle=[2]\color{TSX-jsx-tag},
+    keywordstyle=[3]\color{TSX-keyword},
+    stringstyle=\color{TSX-string},
+    literate=
+        *{0}{{{\color{TSX-number}0}}}{1}
+        {1}{{{\color{TSX-number}1}}}{1}
+        {2}{{{\color{TSX-number}2}}}{1}
+        {3}{{{\color{TSX-number}3}}}{1}
+        {4}{{{\color{TSX-number}4}}}{1}
+        {5}{{{\color{TSX-number}5}}}{1}
+        {6}{{{\color{TSX-number}6}}}{1}
+        {7}{{{\color{TSX-number}7}}}{1}
+        {8}{{{\color{TSX-number}8}}}{1}
+        {9}{{{\color{TSX-number}9}}}{1}
+        {:}{{{\color{TSX-punct}:}}}{1}
+        {,}{{{\color{TSX-punct},}}}{1}
+        {\{}{{{\color{TSX-obj-brace}{\{}}}}{1}
+        {\}}{{{\color{TSX-obj-brace}{\}}}}}{1}
+        {[}{{{\color{TSX-lst-brace}{[}}}}{1}
+        {]}{{{\color{TSX-lst-brace}{]}}}}{1},
+}
+
+\lstset{style=TSX}
+
+\usepackage{mathptmx}	% same Time New Roma
+%\renewcommand{\rmdefault}{phv} % Arial
+%\renewcommand{\sfdefault}{phv} % Arial
+
+\usepackage{fancyhdr}
+\usepackage{algorithm2e}
+\usepackage{multicol}
+\usepackage{float}
+
+\usepackage{titlesec}
+
+\usepackage{bkthesis}
+
+
+\graphicspath{ {figures/} }
+
+%\csdeptname{KHOA ĐIỆN ĐIỆN TỬ}
+%\crname{BÁO CÁO THỰC TẬP TỐT NGHIỆP}
+% \crname{BÁO CÁO TIỂU LUẬN}
+\title{GIT: NGHIÊN CỨU CÔNG CỤ QUẢN LÝ PHIÊN BẢN PHÂN TÁN, CÀI ĐẶT, CẤU HÌNH VÀ CHẠY THỬ NGHIỆM. ĐÁNH GIÁ VỚI MỘT PHẦN MỀM KHÁC CÙNG CHỨC NĂNG}
+% \cstuname{SVTH: Võ Thị Thuy}
+
+\csCouncil{KHOA CÔNG NGHỆ THÔNG TIN}
+\csSupervise{Ths.Nguyễn Xuân Hà Giang}
+% \csReviewer{TS. Pham Van Hai}
+\cttime{08/2024}
+
+\thesislayout
+
+% Thiết lập định dạng cho \chapter
+% \titleformat{\chapter}[display]{%
+%     \normalfont\huge\bfseries%
+% }{%
+%     \chaptertitlename\ \thechapter%
+% }{%
+%     5pt% Space between "Chapter 1" and "Introduction"
+% }{%
+%     \Huge%
+% }
+
+
+\titleformat{\chapter}[block]
+  {\normalfont\fontsize{24pt}{24pt}\bfseries\centering} % Thay đổi giá trị 16pt và 18pt theo mong muốn
+  {CHƯƠNG \thechapter:}
+  {1em}
+  {}
+
+
+
+
+% Khoảng trắng cho \chapter
+\titlespacing*{\chapter}{0pt}{6pt}{0pt}
+
+% Thiết lập định dạng cho \section
+\titleformat{\section}[hang]{\normalfont\Large\bfseries}{\thesection}{1em}{}[]
+
+% Khoảng trắng cho \section
+\titlespacing*{\section}{0pt}{6pt}{0pt}
+
+% Thiết lập định dạng cho \subsection
+\titleformat{\subsection}[hang]{\normalfont\large\bfseries}{\thesubsection}{1em}{}[]
+
+% Khoảng trắng cho \subsection
+\titlespacing*{\subsection}{0pt}{6pt}{0pt}
+
+% Thiết lập định dạng cho \subsubsection
+\titleformat{\subsubsection}[hang]{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}[]
+
+% Khoảng trắng cho \subsubsection
+\titlespacing*{\subsubsection}{0pt}{6pt}{0pt}
+
+
+
+\begin{document}
+% Thụt đầu dòng 1cm
+
+\captionsetup[figure]{font=bf}
+\captionsetup[table]{
+  font=bf,
+  justification=raggedright,
+  singlelinecheck=false
+}
+
+%-	Bìa cứng - màu xanh dương, chữ mạ vàng (xem mẫu đính kèm)
+%-	Trang tên (tờ lót): chất liệu giấy, nội dung giống như bìa LV
+%-	Ở gáy LV: in nhan đề LV (có thể in tóm tắt nếu nhan đề quá dài), size 15 – 17
+%-	Phiếu Nhiệm vụ LV, chấm điểm Hướng dẫn & Phản biện (đã ký): nhận từ GVHD & GVPB sau khi bảo vệ (theo lịch hẹn).
+%-	Lời cam đoan
+%-	Lời cảm ơn/ Lời ngỏ
+%-	Tóm tắt LV
+%-	Mục lục
+%-	Danh mục, bảng biểu, hình ảnh, ... (nếu có)
+%-	Nội dung LV
+%-	Danh mục TL tham khảo
+%-	Phụ lục (nếu có)
+
+\coverpage
+\setlength{\parindent}{1cm}
+\frontmatter
+
+% add content here
+%-	Lời cam đoan
+\begin{declaration}
+
+Chúng tôi xin được cam đoan đề tài “XÂY DỰNG HỆ THỐNG XEM PHIM TRỰC TUYẾN” được
+tiến hành công khai, là công trình nghiên cứu dựa trên sự cố gắng, nỗ lực của chúng tôi trong thời gian qua.
+
+Các số liệu và kết quả nghiên cứu của đề tài là trung thực, không sao chép hoặc sử
+dụng kết quả của đề tài nghiên cứu nào tương tự. Tất cả những sự giúp đỡ cho việc
+xây dựng cơ sở lý thuyết đều được trích dẫn đầy đủ và ghi nguồn gốc rõ ràng và được
+phép công bố.
+
+Chúng tôi xin chịu hoàn toàn trách nhiệm nếu có sự không trung thực trong thông tin sử
+dụng trong công trình nghiên cứu này.
+
+% Signature line
+\hfill % pushes the minipage to the right
+\begin{minipage}{0.5\textwidth}
+
+\begin{center}
+\textit{Cần Thơ, ngày ... tháng ... năm 2024.}
+
+Tác giả đề tài    
+\end{center}
+
+\end{minipage}
+
+\end{declaration}
+
+%-	Lời cảm ơn/ Lời ngỏ
+\begin{acknowledgments}
+Chúng tôi xin chân thành gửi lời cảm ơn đến thầy Võ Thanh Vinh người đã đồng
+hành cùng chúng tôi trong đề tài này. Cảm ơn thầy đã giúp đỡ và hướng dẫn cho chúng tôi những
+lúc chúng tôi gặp khó khăn trong lúc xây dựng đề tài. Đây là một trong những cơ hợi giúp
+chúng tôi nâng cao được trình độ và kinh nghiệm trong chuyên ngành của mình. Qua đó
+cho chúng tôi thấy được những ưu điểm và nhược điểm của bản thân để thông qua đó phát
+triển được những điểm mạnh của mình cũng như hạn chế những mặt còn yếu kém.
+Trong lúc xây dựng trang web còn nhiều thiếu sót mong thầy nhận xét và góp ý cho chúng tôi
+để chúng tôi ngày càng hoàn thiện sản phẩm của mình hơn và một lần nữa chúng tôi xin chân
+thành cảm ơn thầy!
+\end{acknowledgments}
+
+%-	Tóm tắt LV
+\begin{abstract}
+Trong thời đại công nghệ thông tin phát triển vượt bậc, sự lan tỏa của Internet và sự phổ biến của các thiết bị kết nối đến mạng đã tạo nên một cuộc cách mạng trong cuộc sống và giao tiếp của chúng ta. Công nghệ thông tin không chỉ là một lĩnh vực quan trọng mà còn trở thành một công cụ không thể thiếu trong mọi khía cạnh của cuộc sống và xã hội.
+
+Trong lĩnh vực quản lý, công nghệ thông tin đã mang đến những ứng dụng thiết thực và hiệu quả. Và trong số đó, cơ sở dữ liệu đóng vai trò vô cùng quan trọng. Cơ sở dữ liệu không chỉ giúp lưu trữ thông tin một cách gọn gàng và bảo mật, mà còn giúp tổ chức và truy xuất dữ liệu một cách nhanh chóng và chính xác. Đặc biệt, trong quản lý kinh doanh của các doanh nghiệp, cơ sở dữ liệu là một giải pháp hữu hiệu nhằm nâng cao hiệu suất và tăng tốc quá trình quản lý, điều hành.
+
+Trong bối cảnh này, việc xây dựng các trang web đã trở thành xu hướng phổ biến và không thể thiếu để đáp ứng nhu cầu mua sắm và tương tác trực tuyến của người dân. Trang web không chỉ là một nền tảng để cung cấp thông tin, mà còn là một công cụ mạnh mẽ để thúc đẩy kinh doanh và tiếp cận khách hàng tiềm năng.
+
+Chúng tôi, một nhóm lập trình viên, đã nhận thức được sự quan trọng của công nghệ thông tin và tiềm năng của việc xây dựng trang web trong việc phục vụ cộng đồng. Với sự phát triển vượt bậc của công nghệ hiện nay, chúng tôi đã quyết định xây dựng một trang web đặc biệt, một trang web xem phim trực tuyến (Wonderful Time For Movies - WTFmovies), nhằm mang đến cho người dùng những trải nghiệm độc đáo và tận hưởng những bộ phim thú vị.
+
+Trang web của chúng tôi không chỉ đơn thuần là nơi cung cấp thông tin về phim, mà còn là một không gian tương tác, nơi người dùng có thể tìm kiếm, xem và chia sẻ các tác phẩm yêu thích của mình. Chúng tôi đã lựa chọn sử dụng Next.js và Material-UI (MUI) để tạo ra giao diện thân thiện và trực quan, đồng thời kết hợp với nền tảng Cloudflare Page Serverless để triển khai môi trường máy chủ và xây dựng một hệ thống cơ sở dữ liệu mạnh mẽ và linh hoạt.
+
+Chúng tôi tin rằng, việc sở hữu một trang web xem phim không chỉ đáp ứng nhu cầu giải trí và khám phá văn hóa, mà còn mang lại những cơ hội kinh doanh và quảng bá thương hiệu. Với sự phát triển không ngừng của công nghệ và sự kết nối toàn cầu, trang web của chúng tôi sẽ trở thành một điểm đến hấp dẫn cho người đam mê phim.
+
+\end{abstract}	
+\setcounter{page}{0}
+
+\setlist[itemize]{itemsep=-5pt}
+
+\renewcommand{\cfttoctitlefont}{\hfil\Large\bfseries}
+\renewcommand{\cftaftertoctitle}{\centering}
+\renewcommand{\contentsname}{MỤC LỤC}
+
+\renewcommand{\cftloftitlefont}{\hfil\Large\bfseries}
+\renewcommand{\cftafterloftitle}{\centering}
+\renewcommand{\listfigurename}{DANH MỤC HÌNH ẢNH}
+
+\renewcommand{\cftlottitlefont}{\hfil\Large\bfseries}
+\renewcommand{\cftafterlottitle}{\centering}
+\renewcommand{\listtablename}{DANH MỤC BẢNG}
+
+%\Mục lục
+\addtolength{\cftsubsecnumwidth}{0.4cm}
+%\Hình
+\renewcommand{\cftfigpresnum}{Hình } 
+\newlength{\mylen}
+\settowidth{\mylen}{\cftfigpresnum}
+\addtolength{\cftfignumwidth}{\mylen}
+\addtolength{\cftfignumwidth}{0.4cm}
+%\Bảng
+\renewcommand{\cfttabpresnum}{Bảng }
+\newlength{\mylenb}
+\settowidth{\mylenb}{\cfttabpresnum}
+\addtolength{\cfttabnumwidth}{\mylenb}
+\addtolength{\cfttabnumwidth}{0.4cm}
+
+\clearpage
+\pagestyle{plain}
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+\listoftables
+
+
+
+
+%\listofalgorithms
+
+
+\mainmatter
+
+\fancyhead{}  % Clears all page headers and footers
+%\rhead{\thepage}  % Sets the right side header to show the page number
+%\lhead{}  % Clears the left side page header
+%\fancyfoot[positions]{footer}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\pagestyle{fancy}  % Finally, use the "fancy" page style to implement the FancyHdr headers
+
+\input{Chuong1}
+\input{Chuong2}
+\input{Chuong3}
+\input{Chuong4}
+\input{Chuong5}
+
+
+%tài liệu tham khảo và bảng phân công nhiệm vụ
+
+\cleardoublepage
+\pagestyle{plain}
+\begin{refs}
+\input{refs}
+\end{refs}
+
+% bảng phân công công việc
+% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
+\clearpage
+\phancongcongviec
+
+\end{document}

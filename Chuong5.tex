@@ -1,0 +1,93 @@
+\chapter{SO SÁNH GIT VÀ NHỮNG PHẦN MỀM TƯƠNG TỰ}
+\section{Kiến trúc:}
+\subsection{Git:}
+\begin{itemize}
+    \item Là một hệ thống quản lý phiên bản phân tán (DVCS). Mỗi clone là một bản sao đầy đủ của kho lưu trữ, bao gồm lịch sử của tất cả các commit.
+    \item Cho phép làm việc offline vì hầu hết các thao tác (như commit, branch, merge) đều thực hiện được mà không cần kết nối đến server chính.
+\end{itemize}
+
+\subsection{SVN:}
+\begin{itemize}
+    \item Là một hệ thống quản lý phiên bản tập trung (CVCS). Client chỉ tải về phiên bản mới nhất của code base và không bao gồm lịch sử commit.
+    \item Yêu cầu kết nối đến server trung tâm để thực hiện hầu hết các thao tác như commit hoặc update.
+\end{itemize}
+
+\section{Chiến lược Branching và Merging:}
+\subsection{Git:}
+\begin{itemize}
+    \item Branching và merging là rất nhanh và dễ dàng. Git khuyến khích sử dụng branching thường xuyên nhờ vào hiệu suất cao của các thao tác này.
+    \item Có khả năng xử lý merges phức tạp tốt hơn nhờ vào "merges" thông minh.
+\end{itemize}
+
+\subsection{SVN:}
+\begin{itemize}
+    \item Branching có thể chậm và chi phí lưu trữ cao hơn về mặt tài nguyên. Mặt dù SVN hỗ trợ branches, nhưng thường ít được sử dụng so với Git.
+    \item Merging có thể phức tạp hơn, đặc biệt khi xử lý các branch lớn hoặc cũ.
+\end{itemize}
+
+\section{Lịch sử và Tính toàn vẹn của Dữ liệu:}
+\subsection{Git:}
+\begin{itemize}
+    \item Lưu trữ dữ liệu dưới dạng một tập hợp các \textit{snapshot} của hệ thống tệp.
+    \item Mỗi lần commit, Git gần như cần sao chép toàn bộ repository có thể xem được, đảm bảo tính toàn vẹn thông qua các hàm băm SHA-1.
+\end{itemize}
+
+\subsection{SVN:}
+\begin{itemize}
+    \item Lưu trữ thông tin dưới dạng một danh sách các thay đổi từng bước. Cơ chế này thích hợp với các file lớn và các dự án yêu cầu quản lý file binary.
+    \item Sử dụng một cơ sở dữ liệu trung tâm để quản lý phiên bản và lịch sử, có thể dễ dàng phục hồi trạng thái cũ của dự án.
+\end{itemize}
+
+\section{Hiệu suất:}
+\subsection{Git:}
+\begin{itemize}
+    \item Yêu cầu không gian lưu trữ cao hơn ở local vì mỗi lần clone đều bao gồm toàn bộ lịch sử commit.
+    \item Hiệu suất cao trong hầu hết các thao tác nhờ vào việc xử lý local.
+\end{itemize}
+
+\subsection{SVN:}
+\begin{itemize}
+    \item Tối ưu hóa không gian lưu trữ bằng cách chỉ lưu trữ bản sao mới nhất ở local.
+    \item Có thể trải qua sự chậm trễ do tương tác server, đặc biệt là với các repository lớn.
+\end{itemize}
+
+\section{Điểm mạnh và yếu:}
+\subsection{Git}
+\subsubsection{Điểm mạnh:}
+\begin{itemize}
+    \item Tính độc lập cao: Khả năng làm việc offline mà không cần kết nối đến máy chủ trung tâm; thực hiện tất cả các thao tác như commit, merge, và branch cục bộ.
+    \item Linh hoạt trong quản lý branch: Branching và merging nhanh chóng, dễ dàng, khuyến khích phương pháp phát triển feature branch.
+    \item Tính toàn vẹn dữ liệu: Sử dụng hàm băm SHA-1 để đảm bảo tính toàn vẹn của lịch sử codebase.
+    \item Hiệu suất cao: Các thao tác như commit, diff, và merge thực hiện nhanh do được xử lý cục bộ.
+\end{itemize}
+
+\subsubsection{Điểm yếu:}
+\begin{itemize}
+    \item Đường cong học tập: Git có thể khó hiểu cho người mới bắt đầu do độ phức tạp và khả năng cấu hình cao.
+    \item Yêu cầu bộ nhớ: Mỗi clone của repository bao gồm toàn bộ lịch sử và có thể chiếm dụng không gian lưu trữ đáng kể.
+    \item Quản lý file lớn: Git không hiệu quả với các file lớn hoặc binary, mặc dù có các giải pháp như Git LFS (Large File Storage).
+\end{itemize}
+
+\subsection{SVN}
+\subsubsection{Điểm mạnh:}
+\begin{itemize}
+    \item Dễ sử dụng và học: SVN có một model tập trung quen thuộc và thường dễ tiếp cận hơn với người mới.
+    \item Hỗ trợ file lớn: Hiệu suất tốt hơn khi quản lý các file lớn và binary so với Git.
+    \item Kiểm soát truy cập: SVN cho phép cấu hình chi tiết quyền truy cập tại cấp thư mục trong repository.
+    \item Chiếm dụng bộ nhớ ít hơn: Chỉ yêu cầu bản sao của snapshot mới nhất ở máy khách, giảm bớt yêu cầu không gian lưu trữ.
+\end{itemize}
+
+\subsubsection{Điểm yếu:}
+\begin{itemize}
+    \item Phụ thuộc mạnh vào kết nối server: Để thực hiện hầu hết các thao tác như commit hoặc update, SVN yêu cầu kết nối mạng.
+    \item Quản lý branching kém linh hoạt: Branching và merging trong SVN thường chậm và phức tạp hơn so với Git.
+    \item Khả năng mất dữ liệu: Do không clone toàn bộ repository và lịch sử commit, có nguy cơ mất mát dữ liệu khi server trung tâm gặp sự cố.
+    \item Hợp tác: Kém hiệu quả hơn trong các dự án phát triển có sự tham gia của nhiều nhà phát triển từ nhiều địa điểm khác nhau.
+\end{itemize}
+
+\subsubsection{Kết Luận:}
+\begin{itemize}
+\item Git phù hợp với các dự án yêu cầu tính linh hoạt cao trong quản lý phiên bản, thường là dự án có nhiều nhà phát triển cần phối hợp làm việc. Git cung cấp sự độc lập và hiệu suất cao trong việc quản lý nhánh và hợp nhất, khiến nó trở nên lý tưởng cho các dự án phát triển phần mềm động với nhu cầu cộng tác cao. Sự linh hoạt trong quản lý nhánh và hợp nhất cũng khuyến khích phát triển tính năng độc lập và xử lý nhiều nhiệm vụ song song mà không ảnh hưởng đến nhau, hỗ trợ mô hình phát triển Agile và DevOps hiệu quả.
+\item SVN thích hợp với các dự án cần một mô hình kiểm soát truy cập tập trung hoặc khi làm việc với các file lớn/binary. SVN cung cấp cơ chế quản lý tập trung, đơn giản hóa quản lý quyền truy cập và giảm thiểu rủi ro liên quan đến việc quản lý phiên bản. Đối với các dự án mà việc tiếp cận và cập nhật thông tin từ một trung tâm là quan trọng, hoặc khi dự án chủ yếu xoay quanh quản lý tài nguyên lớn và nhị phân mà không yêu cầu nhiều nhánh và hợp nhất thường xuyên, SVN có thể là lựa chọn thích hợp nhất.
+\end{itemize}
+Trong cả hai trường hợp, việc lựa chọn giữa Git và SVN phụ thuộc vào đặc tính dự án, yêu cầu kỹ thuật, và ưu tiên về quy trình làm việc của nhóm phát triển. Cả Git và SVN đều có những điểm mạnh riêng biệt phù hợp với nhu cầu khác nhau, do đó việc hiểu rõ từng hệ thống và áp dụng chúng vào môi trường phù hợp sẽ mang lại hiệu quả tốt nhất cho dự án.
