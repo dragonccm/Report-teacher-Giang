@@ -1,74 +1,150 @@
 \chapter{SO SÁNH GIT VÀ NHỮNG PHẦN MỀM TƯƠNG TỰ}
-\section{Kiến trúc:}
-\subsection{Git:}
+\section{Kiến trúc}
+\subsection{Git}
 \begin{itemize}
     \item Là một hệ thống quản lý phiên bản phân tán (DVCS). Mỗi clone là một bản sao đầy đủ của kho lưu trữ, bao gồm lịch sử của tất cả các commit.
     \item Cho phép làm việc offline vì hầu hết các thao tác (như commit, branch, merge) đều thực hiện được mà không cần kết nối đến server chính.
 \end{itemize}
 
-\subsection{SVN:}
+\subsection{SVN}
 \begin{itemize}
     \item Là một hệ thống quản lý phiên bản tập trung (CVCS). Client chỉ tải về phiên bản mới nhất của code base và không bao gồm lịch sử commit.
     \item Yêu cầu kết nối đến server trung tâm để thực hiện hầu hết các thao tác như commit hoặc update.
 \end{itemize}
 
-\section{Chiến lược Branching và Merging:}
-\subsection{Git:}
+\section{Chiến lược Branching và Merging}
+\subsection{Git}
 \begin{itemize}
-    \item Đối với Git việc Branching và merging là rất nhanh và dễ dàng. Git khuyến khích sử dụng branching thường xuyên nhờ vào hiệu suất cao của các thao tác này.
+    \item Branching và merging rất nhanh và dễ dàng. Git khuyến khích sử dụng branching thường xuyên nhờ vào hiệu suất cao của các thao tác này.
     \item Có khả năng xử lý merges phức tạp tốt hơn nhờ vào "merges" thông minh.
-    với Git thì nó sẽ tạo ra một nhánh code bằng việc tạo một "pointer" trỏ đến commit hiện tại của nhánh gốc và sau đó thực hiện commit trên nhánh mới đó. 
-    khi gộp nhánh Git sử dụng thuật toán "3-way merge" để so sánh code và tạo commit mới, giảm thiểu xung đột và tạo ra lịch sử code rõ ràng.
-    giúp việc merge trở nên dễ dàng hơn.
+    \item Sử dụng thuật toán "3-way merge" để so sánh code và tạo commit mới, giảm thiểu xung đột và tạo ra lịch sử code rõ ràng.
 \end{itemize}
 
-\subsection{SVN:}
+\subsection{SVN}
 \begin{itemize}
-    \item Đối với SVN Branching có thể chậm và chi phí lưu trữ cao hơn về mặt tài nguyên. Mặt dù SVN hỗ trợ branches, nhưng thường ít được sử dụng so với Git.
+    \item Branching có thể chậm và chi phí lưu trữ cao hơn về mặt tài nguyên. Mặc dù SVN hỗ trợ branches, nhưng thường ít được sử dụng so với Git.
     \item Merging có thể phức tạp hơn, đặc biệt khi xử lý các branch lớn hoặc cũ.
-    với Svn thì khi tạo một nhánh mới, nó sẽ tạo một thư mục mới trong repository và copy toàn bộ code từ nhánh gốc vào nhánh mới đó.
-    khi gộp nhánh, SVN sẽ thực hiện "copy and paste" code từ nhánh gốc sang nhánh mới, điều này có thể dẫn đến xung đột và khó khăn trong việc quản lý lịch sử code.
+    \item Khi tạo một nhánh mới, SVN sẽ tạo một thư mục mới trong repository và copy toàn bộ code từ nhánh gốc vào nhánh mới đó.
+    \item Khi gộp nhánh, SVN sẽ thực hiện "copy and paste" code từ nhánh gốc sang nhánh mới, điều này có thể dẫn đến xung đột và khó khăn trong việc quản lý lịch sử code.
 \end{itemize}
-\begin{tabular}{|l|l|l|}
-\hline
-Tính năng & SVN & Git \\ \hline
-Branching & Sao chép toàn bộ dự án & Lưu trữ bằng &quot;pointer&quot; \\ \hline
-Tốc độ Branching & Chậm & Nhanh \\ \hline
-Merging & So sánh code và tạo commit & 3-way merge \\ \hline
-Xử lý xung đột & Dễ xuất hiện xung đột & Xử lý xung đột hiệu quả hơn \\ \hline
-Quản lý lịch sử & Theo dõi track & Ghi lại đầy đủ lịch sử thay đổi \\ \hline
-Linh hoạt & Ít linh hoạt & Rất linh hoạt \\ \hline
-\end{tabular}
 
-\section{Lịch sử và Tính toàn vẹn của Dữ liệu:}
-\subsection{Git:}
+\section{So sánh Git và SVN}
+\begin{longtable}{|l|l|l|}
+    \hline
+    Tính năng & SVN & Git \\ \hline
+    Branching & Sao chép toàn bộ dự án & Lưu trữ bằng "pointer" \\ \hline
+    Tốc độ Branching & Chậm & Nhanh \\ \hline
+    Merging & So sánh code và tạo commit & 3-way merge \\ \hline
+    Xử lý xung đột & Dễ xuất hiện xung đột & Xử lý xung đột hiệu quả hơn \\ \hline
+    Quản lý lịch sử & Theo dõi track & Ghi lại đầy đủ lịch sử thay đổi \\ \hline
+    Linh hoạt & Ít linh hoạt & Rất linh hoạt \\ \hline
+\end{longtable}
+\section{Lịch sử và Tính toàn vẹn của Dữ liệu}
+\subsection{Git}
 \begin{itemize}
     \item Lưu trữ dữ liệu dưới dạng một tập hợp các \textit{snapshot} của hệ thống tệp.
     \item Mỗi lần commit, Git gần như cần sao chép toàn bộ repository có thể xem được, đảm bảo tính toàn vẹn thông qua các hàm băm SHA-1.
 \end{itemize}
 
-\subsection{SVN:}
+\subsection{SVN}
 \begin{itemize}
     \item Lưu trữ thông tin dưới dạng một danh sách các thay đổi từng bước. Cơ chế này thích hợp với các file lớn và các dự án yêu cầu quản lý file binary.
     \item Sử dụng một cơ sở dữ liệu trung tâm để quản lý phiên bản và lịch sử, có thể dễ dàng phục hồi trạng thái cũ của dự án.
 \end{itemize}
 
-\section{Hiệu suất:}
-\subsection{Git:}
+\section{Hiệu suất}
+\subsection{Git}
 \begin{itemize}
     \item Yêu cầu không gian lưu trữ cao hơn ở local vì mỗi lần clone đều bao gồm toàn bộ lịch sử commit.
     \item Hiệu suất cao trong hầu hết các thao tác nhờ vào việc xử lý local.
 \end{itemize}
 
-\subsection{SVN:}
+\subsection{SVN}
 \begin{itemize}
     \item Tối ưu hóa không gian lưu trữ bằng cách chỉ lưu trữ bản sao mới nhất ở local.
     \item Có thể trải qua sự chậm trễ do tương tác server, đặc biệt là với các repository lớn.
 \end{itemize}
 
-\section{Điểm mạnh và yếu:}
+
+\section{Atomic Commits}
+\subsection{SVN}
+\begin{itemize}
+    \item SVN không thực sự hỗ trợ atomic commits. Mặc dù SVN cho phép bạn commit nhiều thay đổi cùng một lúc, nhưng nó không đảm bảo rằng tất cả các thay đổi đó sẽ được áp dụng hoặc hoàn tác cùng một lúc.
+    \item Nếu một phần của commit gặp lỗi, chỉ phần đó sẽ được hoàn tác, phần còn lại vẫn được áp dụng vào repository. Điều này có thể dẫn đến tình trạng repository ở trạng thái không nhất quán.
+    \item Để đạt được atomic commits trong SVN, bạn cần commit từng thay đổi một, hoặc sử dụng các công cụ bên ngoài như TortoiseSVN để thực hiện commit nhiều thay đổi cùng lúc, nhưng vẫn phải kiểm tra cẩn thận để đảm bảo tất cả các thay đổi được áp dụng hoặc hoàn tác cùng một lúc.
+\end{itemize}
+
 \subsection{Git}
-\subsubsection{Điểm mạnh:}
+\begin{itemize}
+    \item Git hỗ trợ atomic commits một cách tự nhiên. Mỗi commit trong Git là một đơn vị nguyên tử, nghĩa là tất cả các thay đổi trong commit sẽ được áp dụng hoặc hoàn tác cùng một lúc.
+    \item Nếu bất kỳ thay đổi nào gặp lỗi, toàn bộ commit sẽ bị hủy và repository sẽ không bị ảnh hưởng.
+    \item Git sử dụng một hệ thống commit hash để đảm bảo tính toàn vẹn của mỗi commit. Điều này giúp Git theo dõi mọi thay đổi và đảm bảo rằng repository luôn ở trạng thái nhất quán.
+\end{itemize}
+
+\section{WebDAV và DeltaV}
+\subsection{SVN và WebDAV}
+\begin{itemize}
+    \item SVN hỗ trợ WebDAV bằng module mod_dav_svn. Điều này cho phép bạn quản lý repository SVN qua giao thức WebDAV, cho phép nhiều người dùng truy cập và chỉnh sửa cùng lúc.
+    \item Lợi thế: Bạn có thể dễ dàng truy cập repository SVN từ bất kỳ trình duyệt nào, thậm chí cả trên thiết bị di động.
+    \item Điểm trừ: SVN không tận dụng được ưu điểm của DeltaV, dẫn đến việc tải toàn bộ nội dung mỗi khi commit, gây lãng phí băng thông và hiệu suất kém.
+    \item Thực tế: SVN với WebDAV thường được dùng trong các trường hợp repository nhỏ hoặc ít thay đổi, nơi băng thông không phải là vấn đề lớn.
+\end{itemize}
+
+\subsection{Git và WebDAV}
+\begin{itemize}
+    \item Git không hỗ trợ WebDAV một cách trực tiếp. Mặc dù có một số project hỗ trợ WebDAV cho Git, nhưng chúng không phổ biến bằng các solution cho SVN.
+    \item Lợi thế: Git tập trung vào việc tối ưu hóa hiệu suất và phân tán, nên nó có thể sử dụng các phương pháp hiệu quả hơn để quản lý repository, chẳng hạn như git-annex.
+    \item Điểm trừ: Việc sử dụng WebDAV trực tiếp với Git có thể phức tạp và không phải là lựa chọn tối ưu.
+\end{itemize}
+
+\subsection{Git và DeltaV}
+\begin{itemize}
+    \item Git không hỗ trợ DeltaV một cách trực tiếp. Tuy nhiên, Git có các cơ chế hiệu quả để quản lý các thay đổi nhỏ, chẳng hạn như git-diff và git-patch, cho phép ghi lại và áp dụng các thay đổi một cách hiệu quả.
+    \item Lợi thế: Git có thể quản lý repository với hiệu suất cao hơn WebDAV, ngay cả khi xử lý các thay đổi nhỏ.
+    \item Điểm trừ: Git không cung cấp giao diện dễ dùng cho WebDAV như SVN.
+\end{itemize}
+\begin{tabular}{|l|l|l|}
+\hline
+Tính năng & SVN & Git \\ \hline
+Hỗ trợ WebDAV &  Có (mod_dav_svn) & Không trực tiếp \\ \hline
+Hỗ trợ DeltaV &  Không tận dụng DeltaV & Không hỗ trợ trực tiếp \\ \hline
+Tải repository | Tải toàn bộ nội dung | Tối ưu hóa hiệu suất, xử lý thay đổi nhỏ hiệu quả |
+\hline
+\end{tabular}
+\section{Quản lý file nhị phân}
+\subsection{SVN}
+\begin{itemize}
+    \item SVN lưu trữ toàn bộ nội dung của file nhị phân mỗi khi có thay đổi.
+    \item Điều này dẫn đến việc tăng kích thước repository và giảm hiệu suất, đặc biệt khi xử lý các file nhị phân lớn, chẳng hạn như hình ảnh, video hoặc file âm thanh.
+\end{itemize}
+
+\subsection{Git}
+\begin{itemize}
+    \item Git chỉ lưu trữ các thay đổi đối với file nhị phân, thay vì lưu trữ toàn bộ nội dung.
+    \item Git sử dụng hệ thống lưu trữ dữ liệu hiệu quả và nén file nhị phân để giảm kích thước file, từ đó tăng hiệu suất và tiết kiệm dung lượng lưu trữ.
+    \item Git vẫn lưu trữ lịch sử thay đổi đối với file nhị phân, cho phép bạn quay lại các phiên bản trước đó.
+\end{itemize}
+
+\section{Kết luận về quản lý file nhị phân}
+\begin{itemize}
+    \item Giữa SVN và Git, Git xử lý file nhị phân hiệu quả hơn do khả năng lưu trữ các thay đổi thay vì toàn bộ nội dung file. Điều này giúp Git đảm bảo hiệu suất, kích thước repository nhỏ gọn và quản lý hiệu quả hơn trong các projects có nhiều file nhị phân.
+    \item Cả SVN và Git đều có thể được sử dụng để quản lý file nhị phân, nhưng Git là lựa chọn tốt hơn, đặc biệt khi xử lý các file lớn hoặc có nhiều thay đổi.
+    \item Bạn cũng có thể sử dụng git-lfs (Large File Storage) để quản lý các file nhị phân lớn trong Git, giúp repository nhỏ hơn và hiệu quả hơn.
+\end{itemize}
+\subsection{So sánh Quản lý File Nhị phân}
+
+\begin{tabular}{|l|l|l|}
+\hline
+Tính năng & SVN & Git \\ \hline
+Lưu trữ | Lưu trữ toàn bộ nội dung | Lưu trữ các thay đổi |
+\hline
+Hiệu suất |  Tăng kích thước repository, giảm hiệu suất |  Tăng hiệu suất, tiết kiệm dung lượng lưu trữ |
+\hline
+\end{tabular}
+
+\section{Điểm mạnh và yếu}
+\subsection{Git}
+\subsubsection{Điểm mạnh}
 \begin{itemize}
     \item Tính độc lập cao: Khả năng làm việc offline mà không cần kết nối đến máy chủ trung tâm; thực hiện tất cả các thao tác như commit, merge, và branch cục bộ.
     \item Linh hoạt trong quản lý branch: Branching và merging nhanh chóng, dễ dàng, khuyến khích phương pháp phát triển feature branch.
@@ -76,7 +152,7 @@ Linh hoạt & Ít linh hoạt & Rất linh hoạt \\ \hline
     \item Hiệu suất cao: Các thao tác như commit, diff, và merge thực hiện nhanh do được xử lý cục bộ.
 \end{itemize}
 
-\subsubsection{Điểm yếu:}
+\subsubsection{Điểm yếu}
 \begin{itemize}
     \item Đường cong học tập: Git có thể khó hiểu cho người mới bắt đầu do độ phức tạp và khả năng cấu hình cao.
     \item Yêu cầu bộ nhớ: Mỗi clone của repository bao gồm toàn bộ lịch sử và có thể chiếm dụng không gian lưu trữ đáng kể.
@@ -84,7 +160,7 @@ Linh hoạt & Ít linh hoạt & Rất linh hoạt \\ \hline
 \end{itemize}
 
 \subsection{SVN}
-\subsubsection{Điểm mạnh:}
+\subsubsection{Điểm mạnh}
 \begin{itemize}
     \item Dễ sử dụng và học: SVN có một model tập trung quen thuộc và thường dễ tiếp cận hơn với người mới.
     \item Hỗ trợ file lớn: Hiệu suất tốt hơn khi quản lý các file lớn và binary so với Git.
@@ -92,17 +168,17 @@ Linh hoạt & Ít linh hoạt & Rất linh hoạt \\ \hline
     \item Chiếm dụng bộ nhớ ít hơn: Chỉ yêu cầu bản sao của snapshot mới nhất ở máy khách, giảm bớt yêu cầu không gian lưu trữ.
 \end{itemize}
 
-\subsubsection{Điểm yếu:}
+\subsubsection{Điểm yếu}
 \begin{itemize}
     \item Phụ thuộc mạnh vào kết nối server: Để thực hiện hầu hết các thao tác như commit hoặc update, SVN yêu cầu kết nối mạng.
     \item Quản lý branching kém linh hoạt: Branching và merging trong SVN thường chậm và phức tạp hơn so với Git.
     \item Khả năng mất dữ liệu: Do không clone toàn bộ repository và lịch sử commit, có nguy cơ mất mát dữ liệu khi server trung tâm gặp sự cố.
     \item Hợp tác: Kém hiệu quả hơn trong các dự án phát triển có sự tham gia của nhiều nhà phát triển từ nhiều địa điểm khác nhau.
 \end{itemize}
-
-\subsubsection{Kết Luận:}
+\section{Kết Luận}
 \begin{itemize}
-\item Git phù hợp với các dự án yêu cầu tính linh hoạt cao trong quản lý phiên bản, thường là dự án có nhiều nhà phát triển cần phối hợp làm việc. Git cung cấp sự độc lập và hiệu suất cao trong việc quản lý nhánh và hợp nhất, khiến nó trở nên lý tưởng cho các dự án phát triển phần mềm động với nhu cầu cộng tác cao. Sự linh hoạt trong quản lý nhánh và hợp nhất cũng khuyến khích phát triển tính năng độc lập và xử lý nhiều nhiệm vụ song song mà không ảnh hưởng đến nhau, hỗ trợ mô hình phát triển Agile và DevOps hiệu quả.
-\item SVN thích hợp với các dự án cần một mô hình kiểm soát truy cập tập trung hoặc khi làm việc với các file lớn/binary. SVN cung cấp cơ chế quản lý tập trung, đơn giản hóa quản lý quyền truy cập và giảm thiểu rủi ro liên quan đến việc quản lý phiên bản. Đối với các dự án mà việc tiếp cận và cập nhật thông tin từ một trung tâm là quan trọng, hoặc khi dự án chủ yếu xoay quanh quản lý tài nguyên lớn và nhị phân mà không yêu cầu nhiều nhánh và hợp nhất thường xuyên, SVN có thể là lựa chọn thích hợp nhất.
+    \item Git phù hợp với các dự án yêu cầu tính linh hoạt cao trong quản lý phiên bản, thường là dự án có nhiều nhà phát triển cần phối hợp làm việc. Git cung cấp sự độc lập và hiệu suất cao trong việc quản lý nhánh và hợp nhất, khiến nó trở nên lý tưởng cho các dự án phát triển phần mềm động với nhu cầu cộng tác cao. Sự linh hoạt trong quản lý nhánh và hợp nhất cũng khuyến khích phát triển tính năng độc lập và xử lý nhiều nhiệm vụ song song mà không ảnh hưởng đến nhau, hỗ trợ mô hình phát triển Agile và DevOps hiệu quả.
+    \item SVN thích hợp với các dự án cần một mô hình kiểm soát truy cập tập trung hoặc khi làm việc với các file lớn/binary. SVN cung cấp cơ chế quản lý tập trung, đơn giản hóa quản lý quyền truy cập và giảm thiểu rủi ro liên quan đến việc quản lý phiên bản. Đối với các dự án mà việc tiếp cận và cập nhật thông tin từ một trung tâm là quan trọng, hoặc khi dự án chủ yếu xoay quanh quản lý tài nguyên lớn và nhị phân mà không yêu cầu nhiều nhánh và hợp nhất thường xuyên, SVN có thể là lựa chọn thích hợp nhất.
 \end{itemize}
-Trong cả hai trường hợp, việc lựa chọn giữa Git và SVN phụ thuộc vào đặc tính dự án, yêu cầu kỹ thuật, và ưu tiên về quy trình làm việc của nhóm phát triển. Cả Git và SVN đều có những điểm mạnh riêng biệt phù hợp với nhu cầu khác nhau, do đó việc hiểu rõ từng hệ thống và áp dụng chúng vào môi trường phù hợp sẽ mang lại hiệu quả tốt nhất cho dự án.
+
+\end{document}
